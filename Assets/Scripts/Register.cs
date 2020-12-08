@@ -17,6 +17,9 @@ public class Register : MonoBehaviour
         }
 
     }
+    
+    // Specific inventory object
+    private Inventory inventory = new Inventory();
 
     public TextMeshProUGUI InBankObj;
     public TextMeshProUGUI DailyEarningsObj;
@@ -44,15 +47,19 @@ public class Register : MonoBehaviour
         return profit;
     }
 
+    public void addSale(int index) {
+        inventory.update(index);
+    }
+
     public float getDailyEarnings(){return dailyEarnings[currentDay];}
     public float getDailyTips(){return dailyTips[currentDay];}
 
     // Update is called once per frame
     void Update()
     {
+
         InBankObj.text = "In Bank: $" + updateInBank().ToString();
         DailyEarningsObj.text = "Daily Earnings: $" + getDailyEarnings().ToString();
         TipJarObj.text = "Tip Jar: $" + getDailyTips().ToString();
-
     }
 }
