@@ -22,24 +22,17 @@ public class ClockDay : MonoBehaviour
     int seconds;
     int secondsElasped;
     float msecs;
-    GameObject pointerSeconds;
-    GameObject pointerMinutes;
-    GameObject pointerHours;
 
     IObservable observable = new IObservable();
 
     void Start() 
     {
-        pointerSeconds = transform.Find("rotation_axis_pointer_seconds").gameObject;
-        pointerMinutes = transform.Find("rotation_axis_pointer_minutes").gameObject;
-        pointerHours   = transform.Find("rotation_axis_pointer_hour").gameObject;
-
         msecs = 0.0f;
         seconds = 0;
         secondsElasped = seconds;
     }
 
-    void addObject (IObserver observer) {
+    public void addObject (IObserver observer) {
         observable.AddObserver(observer);
     }
 
@@ -51,10 +44,7 @@ public class ClockDay : MonoBehaviour
         secondsElasped = seconds;
         minutes = 0;
         hour = 0;
-        pointerSeconds.transform.localEulerAngles = new Vector3(0.0f, 0.0f,  0.0f);
-        pointerMinutes.transform.localEulerAngles = new Vector3(0.0f, 0.0f,  0.0f);
-        pointerHours.transform.localEulerAngles   = new Vector3(0.0f, 0.0f,  0.0f);
-        
+
     }
     
 //-----------------------------------------------------------------------------------------------------------------------------------------
@@ -62,21 +52,22 @@ public class ClockDay : MonoBehaviour
 //-----------------------------------------------------------------------------------------------------------------------------------------
     void Update() 
     {
-        if (dayHasStarted) {
+        if (dayHasStarted)
+        {
             msecs += Time.deltaTime * clockSpeed;
-            if(msecs >= 1.0f)
+            if (msecs >= 1.0f)
             {
                 msecs -= 1.0f;
                 seconds++;
-                if(seconds >= 60)
+                if (seconds >= 60)
                 {
                     seconds = 0;
                     minutes++;
-                    if(minutes > 60)
+                    if (minutes > 60)
                     {
                         minutes = 0;
                         hour++;
-                        if(hour >= 24)
+                        if (hour >= 24)
                             hour = 0;
                     }
                 }
@@ -84,23 +75,12 @@ public class ClockDay : MonoBehaviour
 
 
             //-- calculate pointer angles
-            if (secondsElasped !=seconds) {
+            if (secondsElasped != seconds)
+            {
                 secondsElasped = seconds;
                 observable.Notify(seconds);
             }
 
-            float rotationSeconds = (360.0f / 60.0f)  * seconds;
-            float rotationMinutes = (360.0f / 60.0f)  * minutes;
-            float rotationHours   = ((360.0f / 12.0f) * hour) + ((360.0f / (60.0f * 12.0f)) * minutes);
-
-            //-- draw pointers
-            pointerSeconds.transform.localEulerAngles = new Vector3(0.0f, 0.0f, rotationSeconds);
-            pointerMinutes.transform.localEulerAngles = new Vector3(0.0f, 0.0f, rotationMinutes);
-            pointerHours.transform.localEulerAngles   = new Vector3(0.0f, 0.0f, rotationHours);
-
-        } else {
-
         }
-        
     }
 }
