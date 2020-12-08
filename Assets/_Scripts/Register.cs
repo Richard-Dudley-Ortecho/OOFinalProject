@@ -39,9 +39,15 @@ public class Register : MonoBehaviour
         for (n = 0; n < numDays; n = n+1){
             profit = profit + dailyEarnings[n];
         }
-        Debug.Log("QuarterlyProfit:" + profit);
+        //Debug.Log("QuarterlyProfit:" + profit);
         totalInBank = profit;
         return profit;
+    }
+
+    public void updateDailyEarnings(){
+
+
+
     }
 
     public float getDailyEarnings(){return dailyEarnings[currentDay];}
