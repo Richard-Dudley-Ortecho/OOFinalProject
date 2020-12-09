@@ -15,6 +15,7 @@ public class CustomerBehavior : MonoBehaviour
     public int timeRemaining;
     public int rollType;
     public int startseconds = -1;
+    public int timeSpawnedIn = 0;
 
     void Start()
     {
@@ -26,18 +27,20 @@ public class CustomerBehavior : MonoBehaviour
     public void activateCustomer () {
         this.GetComponent<Renderer>().enabled = true;
         cf.createRandomCustomer(this);
-        m_SpeechBubble.text = "Hi, I want " + this.rollType;
-        m_timeRemaining.text = "I am here for only " + this.timeRemaining + " more seconds";
+        m_SpeechBubble.text = "Hi, I want " + this.rollType + " Roll" ;
+        //m_timeRemaining.text = "I am here for only " + this.timeRemaining + " more seconds";
     }
 
     public void updateTimePassed(int timePassed) {
+        
         if (this.GetComponent<Renderer>().enabled == true)
         {
             if (startseconds <= -1) {
-                startseconds = timePassed;
+                startseconds = Random.Range(10, 25);
+                timeSpawnedIn = timePassed;
             }
             else {
-                timeRemaining = timePassed - startseconds;
+                timeRemaining = startseconds - timePassed + timeSpawnedIn;
                 if (timeRemaining > 0) {
                     m_timeRemaining.text = "I am here for only " + timeRemaining + " more seconds";
                 } else {
@@ -54,6 +57,7 @@ public class CustomerBehavior : MonoBehaviour
         m_SpeechBubble.text = "";
         m_timeRemaining.text = "";
         startseconds = -1;
+        timeSpawnedIn = 0;
     }
 
     public void OrderStatisfied () {
