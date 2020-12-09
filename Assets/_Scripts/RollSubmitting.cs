@@ -12,7 +12,7 @@ public class RollSubmitting : MonoBehaviour
 
     public RollMaking rollMaker;
     public float speed = 0.01f;
-    public float maxDisplacement = 3.5f;
+    public float maxDisplacement = -3.5f;
 
     void Start(){
         startPosition = lineUpObj.transform.position;
@@ -30,22 +30,31 @@ public class RollSubmitting : MonoBehaviour
         lineUpDistances.Add(0.0f);
     }
 
+
     public void updateSlide(){
         int numPlates = lineUpMeals.Count;
-        float xStart;
         float distanceMoved;
         for (int i=0; i < numPlates; i++){
-            distanceMoved = lineUpDistances[i] - speed;
-            lineUpDistances[i] = distanceMoved;
-            lineUpMeals[i].transform.position = new Vector3(startPosition.x + distanceMoved, startPosition.y, startPosition.z);
-        }
-        if (lineUpDistances.Count >= 0){ // @todo: there's an indexing bug here somewhere
-            if (lineUpDistances[0] < maxDisplacement){
-                lineUpDistances.Remove(lineUpDistances[0]);
-                Destroy(lineUpMeals[0]);
-                lineUpMeals.Remove(lineUpMeals[0]);
+            if (lineUpMeals[i] != null){
+                distanceMoved = lineUpDistances[i] - speed;
+                lineUpDistances[i] = distanceMoved;
+                lineUpMeals[i].transform.position = new Vector3(startPosition.x + distanceMoved, startPosition.y, startPosition.z);
+                if (distanceMoved < maxDisplacement){
+                    Debug.Log(maxDisplacement);
+                    Debug.Log(distanceMoved);
+                    Debug.Log("DESTROY");
+                    //lineUpMeals[i].GetComponent<Renderer>().enabled = false;
+                    lineUpMeals[i].SetActive(false);
+                    lineUpMeals[i] = null;
+                }
             }
-        }
+        } 
+
+        /*if (lineUpDistances.Count >= 1){
+            if (lineUpDistances[i] < maxDisplacement){
+                lineUpMeals[i]
+            }
+        }*/
         
     }
 }
