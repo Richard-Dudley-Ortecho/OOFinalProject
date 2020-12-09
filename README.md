@@ -15,3 +15,7 @@ This project borrows a lot of premade assets and materials from other sources, b
 An Android .apk is was built beforehand at this link https://drive.google.com/file/d/1vHBv-AiRpCaWHpiiVOUROM1Hx5xThgkq/view?usp=sharing and its called called FinalOO.apk. Download this to an Android phone and click install (if you are having an error downloading from a 'Unknown Sources' follow the instructions on this website, https://www.wikihow.com/Allow-Apps-from-Unknown-Sources-on-Android). This will install a Unity app with the Google Cardboard VR game and have the app on your phone. Feel free to play after by looking around and tapping!
 
 As an alernative, if you have Unity downloaded, simply clone the repository and have the Unity hub recognize it as a project. Open the project and choose the scene "Garden + Kitchen copy" under OOFinalProject/Assets/_Scenes. The follow the instructions on this website to enable a renderpipeline https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@7.0/manual/configuring-universalrp-for-use.html. And then click the play button. Using alt and click to move around the scene.
+
+### Our Demo Video
+
+https://drive.google.com/file/d/1DI1QRW7lMnYwC_oxO_Jmokxh9ITa0jmA/view?usp=sharing, here is our 10 minute demo video of the game and its code.
