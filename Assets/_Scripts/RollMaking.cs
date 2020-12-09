@@ -5,45 +5,45 @@ using UnityEngine;
 public class RollMaking : MonoBehaviour
 {
     public GameObject lettuceObj, breadObj, meatObj;
-    public Transform plate;
+    public GameObject plate;
 
     List<GameObject> ingredientsLive = new List<GameObject>(); 
+    int ingredientCount = 0;
+    float spacing = 0.15f;
+
+    List<GameObject> getIngredientsList(){return ingredientsLive;}
+    int getIngredientCount(){ return ingredientsLive.Count;}
 
     public void addLettuce(){
         Debug.Log("Lettuce");
-        Vector3 position = plate.position;
+        Vector3 position = plate.transform.position;
+        position.y = position.y + spacing * getIngredientCount();
         Quaternion rotation = Quaternion.Euler(0f, 0f ,0f);
-        ingredientsLive.Add( Instantiate(lettuceObj, position, rotation, plate));
+        ingredientsLive.Add( Instantiate(lettuceObj, position, rotation, plate.transform));
     }
 
-    public void addIngredient(int key){
-        switch (key){
-            case 1:
-                Debug.Log("Lettuce");
-                ingredientsLive.Add( Instantiate(lettuceObj, new Vector3(0,0,0), Quaternion.Euler(0f, 0f ,0f), plate));
-                break;
-            case 2:
-                //ingredientsLive.Add("Bun");
-                break;
-            case 3:
-                //ingredientsLive.Add("Burger");
-                break;
-            default:
-                Debug.Log("Didn't recognize ingredient " + key);
-                break;
-        }
+    public void addBread(){
+        Debug.Log("Bread");
+        Vector3 position = plate.transform.position;
+        position.y = position.y + (spacing * getIngredientCount());
+        Quaternion rotation = Quaternion.Euler(90f, 0f ,0f);
+        ingredientsLive.Add( Instantiate(breadObj, position, rotation, plate.transform));
     }
 
-    void renderBurger(){
+    public void addMeat(){
+        Debug.Log("Meat");
+        Vector3 position = plate.transform.position;
+        position.y = position.y + (spacing * getIngredientCount());
+        Quaternion rotation = Quaternion.Euler(0f, 0f ,0f);
+        ingredientsLive.Add( Instantiate(meatObj, position, rotation, plate.transform));
+    }
+
+    public void clearIngredients(){
         int numIngred = ingredientsLive.Count;
         for (int i=0; i < numIngred; i++){
-            
+            Destroy(ingredientsLive[i]);
         }
+        ingredientsLive.Clear();
     }
-
-    void Update(){
-        renderBurger();
-    }
-
 
 }
