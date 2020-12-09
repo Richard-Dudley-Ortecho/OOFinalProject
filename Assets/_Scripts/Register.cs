@@ -44,10 +44,8 @@ public class Register : MonoBehaviour
         return profit;
     }
 
-    public void updateDailyEarnings(){
-
-
-
+    public void updateDailyEarnings(float transactionAmount){
+        dailyEarnings[currentDay] = dailyEarnings[currentDay] + transactionAmount;
     }
 
     public float getDailyEarnings(){return dailyEarnings[currentDay];}

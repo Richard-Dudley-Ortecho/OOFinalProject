@@ -11,6 +11,8 @@ public class RollSubmitting : MonoBehaviour
     Quaternion startRotation;
 
     public RollMaking rollMaker;
+    public CustomerBehavior customerBehavior;
+    public Register register;
     public float speed = 0.01f;
     public float maxDisplacement = -3.5f;
 
@@ -46,6 +48,8 @@ public class RollSubmitting : MonoBehaviour
                     //lineUpMeals[i].GetComponent<Renderer>().enabled = false;
                     lineUpMeals[i].SetActive(false);
                     lineUpMeals[i] = null;
+                    customerBehavior.OrderStatisfied();
+                    register.updateDailyEarnings(2.25f);
                 }
             }
         } 

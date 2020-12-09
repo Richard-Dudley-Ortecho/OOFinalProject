@@ -54,7 +54,7 @@ public class CustomerBehavior : MonoBehaviour
         this.GetComponent<Renderer>().enabled = false;
         rollType = 0;
         timeRemaining = 0;
-        m_SpeechBubble.text = "";
+        //m_SpeechBubble.text = "";
         m_timeRemaining.text = "";
         startseconds = -1;
         timeSpawnedIn = 0;

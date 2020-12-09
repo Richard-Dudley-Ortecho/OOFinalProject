@@ -7516,7 +7516,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineUpObj: {fileID: 602399235}
   rollMaker: {fileID: 1244205890}
-  speed: 0.01
+  customerBehavior: {fileID: 1060079878}
+  register: {fileID: 1986619130}
+  speed: 0.02
   maxDisplacement: -3.5
 --- !u!1 &604040871
 GameObject:
@@ -20642,7 +20644,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1662370714}
   m_LocalRotation: {x: -0.0000000018595734, y: -0.98768777, z: -1.06927106e-10, w: -0.15643819}
-  m_LocalPosition: {x: 3.91, y: 2.5499997, z: 4.72}
+  m_LocalPosition: {x: 3.9099936, y: 2.549998, z: 4.7200117}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 714620375}
@@ -24842,7 +24844,7 @@ GameObject:
   - component: {fileID: 1986619129}
   - component: {fileID: 1986619130}
   m_Layer: 5
-  m_Name: ScoreBoard
+  m_Name: CashRegister
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
